@@ -1,0 +1,17 @@
+{
+  "name": "Octo",
+  "short_name": "Octo",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "orientation": "portrait",
+
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
