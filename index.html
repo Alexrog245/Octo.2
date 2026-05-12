@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCTO</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+<body>
+
+  <!-- Pantalla de carga -->
+
+  <div id="loader" class="loader-screen">
+
+    <div class="loader-content">
+      <h1>🧠</h1>
+      <p id="loadingQuote"></p>
+
+      <div class="loader-bar">
+        <div class="loader-fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="background-glow glow-1"></div>
+  <div class="background-glow glow-2"></div>
+
+  <main class="app-container">
+
+    <!-- HEADER -->
+
+    <section class="dashboard glass-card">
+
+      <div>
+        <p class="welcome">👋 Bienvenido al sistema que convierte metas en realidad </p>
+        <h1> OCTO 🧠</h1>
+
+        <div class="live-time">
+          <span id="clock"></span>
+        </div>
+
+      </div>
+
+      <div class="progress-wrapper">
+        <svg class="progress-ring" width="110" height="110">
+          <circle class="progress-bg" cx="55" cy="55" r="44"></circle>
+
+          <circle class="progress-circle" cx="55" cy="55" r="44"></circle>
+        </svg>
+
+        <div class="progress-content">
+          <span id="progressPercent">0%</span>
+          <small>Ascensión</small>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- PHILOSOPHY -->
+
+    <section class="quote-box glass-card">
+      <p id="dailyQuote"></p>
+    </section>
+
+    <!-- TASKS -->
+
+    <section class="tasks-section">
+      <h2>Tus tareas</h2>
+      <div id="taskList" class="task-grid"></div>
+    </section>
+
+    <!-- FAB -->
+
+    <button id="fabButton" class="fab">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+
+    <!-- MODAL -->
+
+    <div id="modal" class="modal hidden">
+
+      <div class="modal-card glass-card">
+
+        <h2>Nueva tarea</h2>
+
+        <input
+          type="text"
+          id="taskInput"
+          placeholder="Ej: Construir mi mejor versión"
+        />
+
+        <input
+          type="text"
+          id="categoryInput"
+          placeholder="Categoría"
+        />
+
+        <button id="createTaskButton" class="primary-button">
+          Crear tarea
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- CELEBRATION -->
+
+    <div id="celebration" class="celebration hidden">
+      <span id="celebrationText"></span>
+    </div>
+
+    <!-- FULL COMPLETION -->
+
+    <div id="ultimateMode" class="ultimate-mode hidden">
+      <div class="ultimate-content">
+        <h1>🍕 Bienvenido 🍕</h1>
+        <p>
+          Hoy venciste a tu antigua versión.
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
