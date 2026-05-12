@@ -771,3 +771,164 @@ input:focus{
     0 0 25px rgba(168,85,247,0.35),
     0 0 45px rgba(255,215,0,0.25);
 }
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+@media (max-width:768px){
+
+  .app-container{
+    padding:18px;
+  }
+
+  .dashboard{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:28px;
+
+    padding:22px;
+  }
+
+  .dashboard h1{
+    font-size:30px;
+    line-height:1.1;
+  }
+
+  .welcome{
+    font-size:14px;
+  }
+
+  .live-time{
+    font-size:14px;
+  }
+
+  .progress-wrapper{
+    width:100px;
+    height:100px;
+    align-self:center;
+  }
+
+  .quote-box{
+    padding:20px;
+    border-radius:24px;
+  }
+
+  .quote-box p{
+    font-size:14px;
+    line-height:1.7;
+  }
+
+  .tasks-section h2{
+    font-size:22px;
+  }
+
+  .task-card{
+    padding:18px;
+    border-radius:26px;
+  }
+
+  .task-left{
+    gap:14px;
+  }
+
+  .task-icon{
+    width:54px;
+    height:54px;
+
+    border-radius:18px;
+
+    font-size:20px;
+  }
+
+  .task-title{
+    font-size:16px;
+    line-height:1.3;
+  }
+
+  .category{
+    font-size:11px;
+    padding:7px 12px;
+  }
+
+  .task-actions{
+    gap:10px;
+  }
+
+  .check-circle,
+  .delete-task{
+    width:38px;
+    height:38px;
+  }
+
+  .fab{
+    width:68px;
+    height:68px;
+
+    right:20px;
+    bottom:20px;
+
+    border-radius:24px;
+
+    font-size:24px;
+  }
+
+  .loader-content{
+    width:100%;
+    padding:20px;
+  }
+
+  .loader-content h1{
+    font-size:40px;
+  }
+
+  .loader-content p{
+    font-size:14px;
+  }
+
+  .ultimate-content h1{
+    font-size:42px;
+    line-height:1.1;
+  }
+
+  .ultimate-content p{
+    font-size:18px;
+    padding:0 20px;
+  }
+
+  .brand{
+    flex-wrap:wrap;
+  }
+
+  .brand img{
+    width:50px;
+    height:50px;
+  }
+
+}
+
+/* EXTRA SMALL DEVICES */
+
+@media (max-width:480px){
+
+  .dashboard h1{
+    font-size:26px;
+  }
+
+  .task-top{
+    align-items:flex-start;
+    gap:14px;
+  }
+
+  .task-left{
+    width:100%;
+  }
+
+  .task-actions{
+    flex-direction:column;
+  }
+
+  .quote-box p{
+    font-size:13px;
+  }
+
+}
