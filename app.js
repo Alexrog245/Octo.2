@@ -26,6 +26,12 @@ const taskCategoryInput =
 
 const taskIconInput =
   document.getElementById('taskIcon');
+  
+  const taskHourInput =
+  document.getElementById('taskHour');
+
+const reminderTypeInput =
+  document.getElementById('reminderType');
 
 const quoteText =
   document.getElementById('quoteText');
@@ -196,6 +202,17 @@ function renderTasks(){
             <div class="category">
               ${task.category}
             </div>
+            ${
+  task.hour
+  ?
+  `
+  <div class="task-time">
+    ⏰ ${task.hour}
+  </div>
+  `
+  :
+  ''
+}
 
           </div>
 
@@ -317,6 +334,76 @@ addTaskBtn.addEventListener('click', () => {
 
 const emojis =
   document.querySelectorAll('.emoji-picker span');
+  /* =========================================
+   TASK PRESETS
+========================================= */
+
+const presetButtons =
+  document.querySelectorAll('.preset-btn');
+
+const presetData = {
+
+  '💪 Entrenar':{
+    category:'Ejercicio',
+    icon:'💪'
+  },
+
+  '📚 Estudiar':{
+    category:'Estudio',
+    icon:'📚'
+  },
+
+  '🐶 Pasear perro':{
+    category:'Mascotas',
+    icon:'🐶'
+  },
+
+  '⛽ Gasolina':{
+    category:'Transporte',
+    icon:'⛽'
+  },
+
+  '🍽️ Dar comida':{
+    category:'Mascotas',
+    icon:'🍽️'
+  },
+
+  '💧 Tomar agua':{
+    category:'Salud',
+    icon:'💧'
+  },
+
+  '📞 Llamada':{
+    category:'Trabajo',
+    icon:'📞'
+  },
+
+  '🛒 Compras':{
+    category:'Casa',
+    icon:'🛒'
+  }
+
+};
+
+presetButtons.forEach(button => {
+
+  button.addEventListener('click', () => {
+
+    const preset =
+      presetData[button.textContent.trim()];
+
+    taskTitleInput.value =
+      button.textContent.trim();
+
+    taskCategoryInput.value =
+      preset.category;
+
+    taskIconInput.value =
+      preset.icon;
+
+  });
+
+});
 
 emojis.forEach(emoji => {
 
@@ -352,19 +439,24 @@ saveTaskBtn.addEventListener('click', () => {
 
   }
 
-  tasks.push({
+tasks.push({
 
-    id:Date.now(),
+  id:Date.now(),
 
-    title,
+  title,
 
-    category,
+  category,
 
-    icon,
+  icon,
 
-    completed:false
+  hour:taskHourInput.value,
 
-  });
+  reminderType:
+    reminderTypeInput.value,
+
+  completed:false
+
+});
 
   saveTasks();
 
