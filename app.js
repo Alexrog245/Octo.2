@@ -594,3 +594,16 @@ window.addEventListener('load', () => {
   }, 2200);
 
 });
+/* =========================================
+   CLOSE MODAL WHEN CLICK OUTSIDE
+========================================= */
+
+modal.addEventListener('click', (e) => {
+
+  if(e.target === modal){
+
+    modal.classList.add('hidden');
+
+  }
+
+});
