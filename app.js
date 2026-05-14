@@ -328,7 +328,12 @@ addTaskBtn.addEventListener('click', () => {
 
 });
 
+/* =========================================
+   EMOJI PICKER
+========================================= */
 
+const emojis =
+  document.querySelectorAll('.emoji-picker span');
   /* =========================================
    TASK PRESETS
 ========================================= */
