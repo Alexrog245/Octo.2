@@ -502,12 +502,19 @@ svg{
 
 .modal-box{
 
-  width:90%;
-  max-width:440px;
+  width:100%;
+
+  max-width:520px;
 
   padding:30px;
 
   border-radius:32px;
+
+  max-height:90vh;
+
+  overflow-y:auto;
+
+  animation:modalIn 0.35s ease;
 
 }
 
@@ -558,48 +565,7 @@ svg{
 
 }
 
-/* EMOJIS */
 
-.emoji-picker{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:10px;
-
-  margin-bottom:16px;
-
-}
-
-.emoji-picker span{
-
-  width:46px;
-  height:46px;
-
-  border-radius:14px;
-
-  background:rgba(255,255,255,0.06);
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  cursor:pointer;
-
-  transition:0.25s ease;
-
-}
-
-.emoji-picker span:hover{
-
-  transform:scale(1.12);
-
-  background:rgba(168,85,247,0.2);
-
-}
 
 /* LOADER */
 
@@ -904,13 +870,29 @@ select{
 
 @media(max-width:768px){
 
-  .modal{
+.modal{
 
-    padding:20px;
+  position:fixed;
 
-    overflow-y:auto;
+  inset:0;
 
-  }
+  background:rgba(0,0,0,0.78);
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:9999;
+
+  padding:20px;
+
+  overflow-y:auto;
+
+  -webkit-overflow-scrolling:touch;
+
+}
 
   .modal-box{
 
@@ -932,5 +914,74 @@ select{
   color:#ffd700;
 
   opacity:0.9;
+
+}
+/* =========================================
+   MODAL ANIMATION
+========================================= */
+
+@keyframes modalIn{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(40px)
+      scale(0.96);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+/* =========================================
+   MOBILE FIXES
+========================================= */
+
+@media(max-width:768px){
+
+  .modal{
+
+    align-items:flex-start;
+
+    padding-top:40px;
+
+    padding-bottom:120px;
+
+  }
+
+  .modal-box{
+
+    width:100%;
+
+    padding:24px;
+
+    border-radius:28px;
+
+  }
+
+  .task-presets{
+
+    gap:8px;
+
+  }
+
+  .preset-btn{
+
+    font-size:13px;
+
+    padding:10px 14px;
+
+  }
 
 }
