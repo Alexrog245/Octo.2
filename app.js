@@ -328,12 +328,7 @@ addTaskBtn.addEventListener('click', () => {
 
 });
 
-/* =========================================
-   EMOJI PICKER
-========================================= */
 
-const emojis =
-  document.querySelectorAll('.emoji-picker span');
   /* =========================================
    TASK PRESETS
 ========================================= */
@@ -405,16 +400,6 @@ presetButtons.forEach(button => {
 
 });
 
-emojis.forEach(emoji => {
-
-  emoji.addEventListener('click', () => {
-
-    taskIconInput.value =
-      emoji.textContent;
-
-  });
-
-});
 
 /* =========================================
    SAVE NEW TASK
@@ -592,18 +577,5 @@ window.addEventListener('load', () => {
     }, 600);
 
   }, 2200);
-
-});
-/* =========================================
-   CLOSE MODAL WHEN CLICK OUTSIDE
-========================================= */
-
-modal.addEventListener('click', (e) => {
-
-  if(e.target === modal){
-
-    modal.classList.add('hidden');
-
-  }
 
 });
