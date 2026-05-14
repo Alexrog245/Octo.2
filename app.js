@@ -14,6 +14,31 @@ const addTaskBtn =
 
 const modal =
   document.getElementById('modal');
+  
+  const closeModalBtn =
+  document.getElementById('closeModalBtn');
+
+  /* =========================================
+   CLOSE MODAL
+========================================= */
+
+closeModalBtn.addEventListener('click', () => {
+
+  modal.classList.add('hidden');
+
+});
+
+/* CLOSE WHEN CLICK OUTSIDE */
+
+modal.addEventListener('click', (e) => {
+
+  if(e.target === modal){
+
+    modal.classList.add('hidden');
+
+  }
+
+});
 
 const saveTaskBtn =
   document.getElementById('saveTaskBtn');
