@@ -542,25 +542,7 @@ svg {
 
 }
 
-.modal-box button {
 
-  width: 100%;
-
-  padding: 16px;
-
-  border: none;
-
-  border-radius: 18px;
-
-  background: linear-gradient(135deg, #a855f7, #ffd700);
-
-  color: white;
-
-  font-size: 16px;
-
-  cursor: pointer;
-
-}
 
 /* CLOSE BUTTON */
 
@@ -1014,53 +996,7 @@ select {
    STATS
 ========================================= */
 
-.stats {
 
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 16px;
-
-  margin-bottom: 26px;
-
-  padding: 20px;
-
-  border-radius: 28px;
-
-}
-
-.stat-box {
-
-  text-align: center;
-
-  padding: 18px;
-
-  border-radius: 22px;
-
-  background:
-    rgba(255, 255, 255, 0.04);
-
-}
-
-.stat-box h3 {
-
-  font-size: 30px;
-
-  color: #ffd700;
-
-  margin-bottom: 8px;
-
-}
-
-.stat-box p {
-
-  opacity: 0.7;
-
-  font-size: 14px;
-
-}
 
 @media(max-width:768px) {
 

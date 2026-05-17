@@ -551,10 +551,6 @@ function updateStats() {
     'pendingCount'
   ).textContent = pending;
 
-  document.getElementById(
-    'disciplinePercent'
-  ).textContent = `${percent}%`;
-
 }
 
 /* =========================================
