@@ -15,12 +15,12 @@ const addTaskBtn =
 
 const modal =
   document.getElementById('modal');
-  
-  const closeModalBtn =
+
+const closeModalBtn =
   document.getElementById('closeModalBtn');
 
-  /* =========================================
-   CLOSE MODAL
+/* =========================================
+ CLOSE MODAL
 ========================================= */
 
 closeModalBtn.addEventListener('click', () => {
@@ -33,7 +33,7 @@ closeModalBtn.addEventListener('click', () => {
 
 modal.addEventListener('click', (e) => {
 
-  if(e.target === modal){
+  if (e.target === modal) {
 
     modal.classList.add('hidden');
 
@@ -52,12 +52,28 @@ const taskCategoryInput =
 
 const taskIconInput =
   document.getElementById('taskIcon');
-  
-  const taskHourInput =
+
+const taskHourInput =
   document.getElementById('taskHour');
 
 const reminderTypeInput =
   document.getElementById('reminderType');
+
+/* =========================================
+   STATS ELEMENTS
+========================================= */
+
+const completedCount =
+  document.getElementById('completedCount');
+
+const pendingCount =
+  document.getElementById('pendingCount');
+
+const disciplineCount =
+  document.getElementById('disciplineCount');
+
+const totalCount =
+  document.getElementById('totalCount');
 
 const quoteText =
   document.getElementById('quoteText');
@@ -71,11 +87,11 @@ const legendarySound =
 const particles =
   document.getElementById('particles');
 
-  /* =========================================
-   NOTIFICATIONS
+/* =========================================
+ NOTIFICATIONS
 ========================================= */
 
-if('serviceWorker' in navigator){
+if ('serviceWorker' in navigator) {
 
   navigator.serviceWorker
     .register('sw.js')
@@ -87,7 +103,7 @@ if('serviceWorker' in navigator){
 
 }
 
-if(Notification.permission !== 'granted'){
+if (Notification.permission !== 'granted') {
 
   Notification.requestPermission();
 
@@ -97,7 +113,7 @@ if(Notification.permission !== 'granted'){
    PARTICLES
 ========================================= */
 
-for(let i = 0; i < 40; i++){
+for (let i = 0; i < 40; i++) {
 
   const particle =
     document.createElement('span');
@@ -121,62 +137,62 @@ for(let i = 0; i < 40; i++){
 
 const quotes = [
 
-{
-  text:'La disciplina tarde o temprano derrota al talento.',
-  author:'Ayanokoji'
-},
+  {
+    text: 'La disciplina tarde o temprano derrota al talento.',
+    author: 'Ayanokoji'
+  },
 
-{
-  text:'Los débiles dependen de motivación. Los fuertes dependen de sistemas.',
-  author:'Octo'
-},
+  {
+    text: 'Los débiles dependen de motivación. Los fuertes dependen de sistemas.',
+    author: 'Octo'
+  },
 
-{
-  text:'El hombre conquista el mundo conquistándose a sí mismo.',
-  author:'Zen'
-},
+  {
+    text: 'El hombre conquista el mundo conquistándose a sí mismo.',
+    author: 'Zen'
+  },
 
-{
-  text:'El tiempo igual pasará. Decide en quién te convertirás mientras pasa.',
-  author:'Octo'
-},
+  {
+    text: 'El tiempo igual pasará. Decide en quién te convertirás mientras pasa.',
+    author: 'Octo'
+  },
 
-{
-  text:'La ventaja se construye cuando nadie está mirando.',
-  author:'Ayanokoji'
-},
+  {
+    text: 'La ventaja se construye cuando nadie está mirando.',
+    author: 'Ayanokoji'
+  },
 
-{
-  text:'La constancia convierte lo imposible en inevitable.',
-  author:'Octo'
-},
+  {
+    text: 'La constancia convierte lo imposible en inevitable.',
+    author: 'Octo'
+  },
 
-{
-  text:'No necesitas sentir ganas. Necesitas actuar.',
-  author:'Kratos'
-},
+  {
+    text: 'No necesitas sentir ganas. Necesitas actuar.',
+    author: 'Kratos'
+  },
 
-{
-  text:'Cada día que ignoras tu potencial alguien menos talentoso te supera.',
-  author:'Octo'
-},
+  {
+    text: 'Cada día que ignoras tu potencial alguien menos talentoso te supera.',
+    author: 'Octo'
+  },
 
-{
-  text:'Las personas cambian cuando entienden lo que pierden.',
-  author:'Ayanokoji'
-},
+  {
+    text: 'Las personas cambian cuando entienden lo que pierden.',
+    author: 'Ayanokoji'
+  },
 
-{
-  text:'Tu futuro está creado por lo que haces hoy.',
-  author:'Anime Philosophy'
-},
-];  
+  {
+    text: 'Tu futuro está creado por lo que haces hoy.',
+    author: 'Anime Philosophy'
+  },
+];
 
 /* =========================================
    LOAD RANDOM QUOTE
 ========================================= */
 
-function randomQuote(){
+function randomQuote() {
 
   const random =
     quotes[Math.floor(Math.random() * quotes.length)];
@@ -202,14 +218,14 @@ setInterval(() => {
    CLOCK
 ========================================= */
 
-function updateClock(){
+function updateClock() {
 
   const now = new Date();
 
   currentTime.textContent =
     now.toLocaleTimeString([], {
-      hour:'2-digit',
-      minute:'2-digit'
+      hour: '2-digit',
+      minute: '2-digit'
     });
 
 }
@@ -226,29 +242,29 @@ let tasks = JSON.parse(
   localStorage.getItem('octo_tasks')
 ) || [
 
-  {
-    id:1,
-    title:'Hacer tarea de matemáticas',
-    category:'Estudio',
-    icon:'📘',
-    completed:false
-  },
+    {
+      id: 1,
+      title: 'Hacer tarea de matemáticas',
+      category: 'Estudio',
+      icon: '📘',
+      completed: false
+    },
 
-  {
-    id:2,
-    title:'Entrenamiento',
-    category:'Ejercicio',
-    icon:'💪',
-    completed:false
-  }
+    {
+      id: 2,
+      title: 'Entrenamiento',
+      category: 'Ejercicio',
+      icon: '💪',
+      completed: false
+    }
 
-];
+  ];
 
 /* =========================================
    SAVE TASKS
 ========================================= */
 
-function saveTasks(){
+function saveTasks() {
 
   localStorage.setItem(
     'octo_tasks',
@@ -261,7 +277,7 @@ function saveTasks(){
    RENDER TASKS
 ========================================= */
 
-function renderTasks(){
+function renderTasks() {
 
   taskGrid.innerHTML = '';
 
@@ -271,8 +287,7 @@ function renderTasks(){
       document.createElement('div');
 
     card.className =
-      `task-card glass ${
-        task.completed ? 'completed' : ''
+      `task-card glass ${task.completed ? 'completed' : ''
       }`;
 
     card.innerHTML = `
@@ -294,17 +309,16 @@ function renderTasks(){
             <div class="category">
               ${task.category}
             </div>
-            ${
-  task.hour
-  ?
-  `
+            ${task.hour
+        ?
+        `
   <div class="task-time">
     ⏰ ${task.hour}
   </div>
   `
-  :
-  ''
-}
+        :
+        ''
+      }
 
           </div>
 
@@ -346,6 +360,45 @@ function renderTasks(){
       checkMindState();
 
       updateProgress();
+      updateStats();
+
+      /* =========================================
+         UPDATE STATS
+      ========================================= */
+
+      function updateStats() {
+
+        const completed =
+          tasks.filter(task => task.completed).length;
+
+        const pending =
+          tasks.filter(task => !task.completed).length;
+
+        const total =
+          tasks.length;
+
+        const discipline =
+          total === 0
+            ? 0
+            : Math.round(
+              (completed / total) * 100
+            );
+
+        completedCount.textContent =
+          completed;
+
+        pendingCount.textContent =
+          pending;
+
+        totalCount.textContent =
+          total;
+
+        disciplineCount.textContent =
+          `${discipline}%`;
+
+      }
+
+      updateStats();
 
       updateStats();
 
@@ -362,8 +415,9 @@ function renderTasks(){
       renderTasks();
 
       updateProgress();
+      updateStats();
 
-      if(task.completed){
+      if (task.completed) {
 
         completeSound.currentTime = 0;
 
@@ -389,7 +443,7 @@ renderTasks();
    PSYCHOLOGICAL SYSTEM
 ========================================= */
 
-function checkMindState(){
+function checkMindState() {
 
   const completed =
     tasks.filter(
@@ -403,7 +457,7 @@ function checkMindState(){
 
   /* MUCHAS COMPLETADAS */
 
-  if(completed >= 5){
+  if (completed >= 5) {
 
     quoteText.textContent =
 
@@ -413,7 +467,7 @@ function checkMindState(){
 
   /* MUCHAS PENDIENTES */
 
-  if(pending >= 5){
+  if (pending >= 5) {
 
     quoteText.textContent =
 
@@ -423,10 +477,10 @@ function checkMindState(){
 
   /* TODO COMPLETADO */
 
-  if(
+  if (
     tasks.length > 0 &&
     tasks.every(task => task.completed)
-  ){
+  ) {
 
     quoteText.textContent =
 
@@ -439,7 +493,7 @@ function checkMindState(){
    PROGRESS
 ========================================= */
 
-function updateProgress(){
+function updateProgress() {
 
   const completed =
     tasks.filter(task => task.completed).length;
@@ -464,12 +518,13 @@ function updateProgress(){
 }
 
 updateProgress();
+updateStats();
 
 /* =========================================
    STATS SYSTEM
 ========================================= */
 
-function updateStats(){
+function updateStats() {
 
   const completed =
     tasks.filter(
@@ -483,10 +538,10 @@ function updateStats(){
 
   const percent =
     tasks.length === 0
-    ? 0
-    : Math.round(
-      (completed / tasks.length) * 100
-    );
+      ? 0
+      : Math.round(
+        (completed / tasks.length) * 100
+      );
 
   document.getElementById(
     'completedCount'
@@ -513,8 +568,8 @@ addTaskBtn.addEventListener('click', () => {
 });
 
 
-  /* =========================================
-   TASK PRESETS
+/* =========================================
+ TASK PRESETS
 ========================================= */
 
 const presetButtons =
@@ -522,44 +577,44 @@ const presetButtons =
 
 const presetData = {
 
-  '💪 Entrenar':{
-    category:'Ejercicio',
-    icon:'💪'
+  '💪 Entrenar': {
+    category: 'Ejercicio',
+    icon: '💪'
   },
 
-  '📚 Estudiar':{
-    category:'Estudio',
-    icon:'📚'
+  '📚 Estudiar': {
+    category: 'Estudio',
+    icon: '📚'
   },
 
-  '🐶 Pasear perro':{
-    category:'Mascotas',
-    icon:'🐶'
+  '🐶 Pasear perro': {
+    category: 'Mascotas',
+    icon: '🐶'
   },
 
-  '⛽ Gasolina':{
-    category:'Transporte',
-    icon:'⛽'
+  '⛽ Gasolina': {
+    category: 'Transporte',
+    icon: '⛽'
   },
 
-  '🍽️ Dar comida':{
-    category:'Mascotas',
-    icon:'🍽️'
+  '🍽️ Dar comida': {
+    category: 'Mascotas',
+    icon: '🍽️'
   },
 
-  '💧 Tomar agua':{
-    category:'Salud',
-    icon:'💧'
+  '💧 Tomar agua': {
+    category: 'Salud',
+    icon: '💧'
   },
 
-  '📞 Llamada':{
-    category:'Trabajo',
-    icon:'📞'
+  '📞 Llamada': {
+    category: 'Trabajo',
+    icon: '📞'
   },
 
-  '🛒 Compras':{
-    category:'Casa',
-    icon:'🛒'
+  '🛒 Compras': {
+    category: 'Casa',
+    icon: '🛒'
   }
 
 };
@@ -590,7 +645,7 @@ presetButtons.forEach(button => {
 ========================================= */
 const notificationMessages = {
 
-  '💪':[
+  '💪': [
 
     'Tu cuerpo refleja tus hábitos.',
     'Cada repetición construye disciplina.',
@@ -598,7 +653,7 @@ const notificationMessages = {
 
   ],
 
-  '📚':[
+  '📚': [
 
     'La ventaja intelectual se construye en silencio.',
     'Estudiar hoy es dominar mañana.',
@@ -606,7 +661,7 @@ const notificationMessages = {
 
   ],
 
-  '🧠':[
+  '🧠': [
 
     'La disciplina siempre supera a la motivación.',
     'Pensar diferente requiere actuar diferente.',
@@ -614,7 +669,7 @@ const notificationMessages = {
 
   ],
 
-  '👑':[
+  '👑': [
 
     'Los líderes actúan incluso cuando no quieren.',
     'El respeto se gana con acciones.',
@@ -622,7 +677,7 @@ const notificationMessages = {
 
   ],
 
-  '🚀':[
+  '🚀': [
 
     'Tu futuro depende de lo que hagas hoy.',
     'Las metas sin acción son ilusiones.',
@@ -644,7 +699,7 @@ saveTaskBtn.addEventListener('click', () => {
   const icon =
     taskIconInput.value.trim() || '✨';
 
-  if(!title || !category){
+  if (!title || !category) {
 
     alert('Completa todos los campos');
 
@@ -652,51 +707,52 @@ saveTaskBtn.addEventListener('click', () => {
 
   }
 
-tasks.push({
+  tasks.push({
 
-  id:Date.now(),
+    id: Date.now(),
 
-  title,
+    title,
 
-  category,
+    category,
 
-  icon,
+    icon,
 
-  hour:taskHourInput.value,
+    hour: taskHourInput.value,
 
-  reminderType:
-    reminderTypeInput.value,
+    reminderType:
+      reminderTypeInput.value,
 
-  completed:false
+    completed: false
 
-});
+  });
 
-scheduleNotification({
+  scheduleNotification({
 
-  title,
+    title,
 
-  icon,
+    icon,
 
-  hour:taskHourInput.value,
+    hour: taskHourInput.value,
 
-  reminderType:
-    reminderTypeInput.value
+    reminderType:
+      reminderTypeInput.value
 
-});
+  });
 
   saveTasks();
 
   renderTasks();
 
   updateProgress();
-  
+  updateStats();
+
   scheduleNotification(
-  title,
-  category,
-  icon,
-  taskHourInput.value,
-  reminderTypeInput.value
-);
+    title,
+    category,
+    icon,
+    taskHourInput.value,
+    reminderTypeInput.value
+  );
 
   modal.classList.add('hidden');
 
@@ -712,9 +768,9 @@ scheduleNotification({
    SCHEDULE NOTIFICATIONS
 ========================================= */
 
-function scheduleNotification(task){
+function scheduleNotification(task) {
 
-  if(!task.hour) return;
+  if (!task.hour) return;
 
   const now = new Date();
 
@@ -739,7 +795,7 @@ function scheduleNotification(task){
   const delay =
     notificationTime - now.getTime();
 
-  if(delay > 0){
+  if (delay > 0) {
 
     setTimeout(() => {
 
@@ -755,7 +811,7 @@ function scheduleNotification(task){
    CELEBRATION
 ========================================= */
 
-function showCelebration(){
+function showCelebration() {
 
   const messages = [
 
@@ -801,14 +857,14 @@ function showCelebration(){
    LEGENDARY MODE
 ========================================= */
 
-function checkLegendary(){
+function checkLegendary() {
 
-  if(tasks.length === 0) return;
+  if (tasks.length === 0) return;
 
   const allCompleted =
     tasks.every(task => task.completed);
 
-  if(allCompleted){
+  if (allCompleted) {
 
     legendarySound.currentTime = 0;
 
@@ -856,7 +912,7 @@ function checkLegendary(){
    NOTIFICATION SYSTEM
 ========================================= */
 
-if('Notification' in window){
+if ('Notification' in window) {
 
   Notification.requestPermission();
 
@@ -864,7 +920,7 @@ if('Notification' in window){
 
 const motivationalNotifications = {
 
-  '💪':[
+  '💪': [
 
     'Tu entrenamiento te está esperando. La disciplina no descansa.',
 
@@ -874,7 +930,7 @@ const motivationalNotifications = {
 
   ],
 
-  '📚':[
+  '📚': [
 
     'Tu futuro depende de lo que estudies hoy.',
 
@@ -884,7 +940,7 @@ const motivationalNotifications = {
 
   ],
 
-  '💧':[
+  '💧': [
 
     'Tu cuerpo también necesita mantenimiento.',
 
@@ -894,7 +950,7 @@ const motivationalNotifications = {
 
   ],
 
-  '🧠':[
+  '🧠': [
 
     'Controla tu mente o ella te controlará a ti.',
 
@@ -904,7 +960,7 @@ const motivationalNotifications = {
 
   ],
 
-  '🎮':[
+  '🎮': [
 
     'AFK demasiado tiempo.',
 
@@ -914,7 +970,7 @@ const motivationalNotifications = {
 
   ],
 
-  'default':[
+  'default': [
 
     'La disciplina construye versiones legendarias.',
 
@@ -926,9 +982,9 @@ const motivationalNotifications = {
 
 };
 
-function sendTaskReminder(task){
+function sendTaskReminder(task) {
 
-  if(Notification.permission !== 'granted')
+  if (Notification.permission !== 'granted')
     return;
 
   const messages =
@@ -938,9 +994,9 @@ function sendTaskReminder(task){
 
   const randomMessage =
     messages[
-      Math.floor(
-        Math.random() * messages.length
-      )
+    Math.floor(
+      Math.random() * messages.length
+    )
     ];
 
   navigator.serviceWorker.ready.then(registration => {
@@ -953,11 +1009,11 @@ function sendTaskReminder(task){
 
         body: randomMessage,
 
-        icon:'icon.png',
+        icon: 'icon.png',
 
-        badge:'icon.png',
+        badge: 'icon.png',
 
-        vibrate:[
+        vibrate: [
 
           200,
           100,
@@ -965,9 +1021,9 @@ function sendTaskReminder(task){
 
         ],
 
-        tag:'octo-task',
+        tag: 'octo-task',
 
-        renotify:true
+        renotify: true
 
       }
 
@@ -1001,7 +1057,7 @@ window.addEventListener('load', () => {
    SERVICE WORKER
 ========================================= */
 
-if('serviceWorker' in navigator){
+if ('serviceWorker' in navigator) {
 
   window.addEventListener('load', () => {
 
@@ -1024,13 +1080,13 @@ if('serviceWorker' in navigator){
    SMART NOTIFICATIONS
 ========================================= */
 
-function scheduleNotification(task){
+function scheduleNotification(task) {
 
-  if(!('Notification' in window)) return;
+  if (!('Notification' in window)) return;
 
-  if(Notification.permission !== 'granted') return;
+  if (Notification.permission !== 'granted') return;
 
-  if(!task.hour) return;
+  if (!task.hour) return;
 
   const [hour, minute] =
     task.hour.split(':');
@@ -1055,7 +1111,7 @@ function scheduleNotification(task){
   const timeout =
     notificationTime.getTime() - now.getTime();
 
-  if(timeout <= 0) return;
+  if (timeout <= 0) return;
 
   setTimeout(() => {
 
@@ -1067,16 +1123,16 @@ function scheduleNotification(task){
 
     const randomMessage =
       categoryMessages[
-        Math.floor(
-          Math.random() * categoryMessages.length
-        )
+      Math.floor(
+        Math.random() * categoryMessages.length
+      )
       ];
 
     new Notification(
       `⏰ ${task.title}`,
       {
-        body:randomMessage,
-        icon:'icon.png'
+        body: randomMessage,
+        icon: 'icon.png'
       }
     );
 
@@ -1087,7 +1143,7 @@ function scheduleNotification(task){
    NOTIFICATION PERMISSION
 ========================================= */
 
-if('Notification' in window){
+if ('Notification' in window) {
 
   Notification.requestPermission();
 
@@ -1102,9 +1158,9 @@ function scheduleNotification(
   icon,
   hour,
   reminder
-){
+) {
 
-  if(!hour) return;
+  if (!hour) return;
 
   const now = new Date();
 
@@ -1124,35 +1180,35 @@ function scheduleNotification(
   const delay =
     taskTime.getTime() - now.getTime();
 
-  if(delay <= 0) return;
+  if (delay <= 0) return;
 
   const messages = {
 
-    '💪':[
+    '💪': [
       'Tu disciplina física construye tu mente.',
       'Cada entrenamiento te acerca a tu mejor versión.',
       'La incomodidad de hoy será poder mañana.'
     ],
 
-    '📚':[
+    '📚': [
       'El conocimiento te da ventaja sobre los demás.',
       'Estudiar hoy evita arrepentimientos mañana.',
       'Tu futuro depende de lo que aprendas ahora.'
     ],
 
-    '🧠':[
+    '🧠': [
       'Tu mente necesita entrenamiento diario.',
       'Pensar diferente cambia tu destino.',
       'El enfoque separa a los grandes del resto.'
     ],
 
-    '🛒':[
+    '🛒': [
       'Resolver lo pequeño mantiene el control total.',
       'La organización evita el caos.',
       'Cada tarea completada fortalece tu sistema.'
     ],
 
-    '✨':[
+    '✨': [
       'No ignores lo que prometiste hacer.',
       'La disciplina supera la motivación.',
       'Tu versión futura depende de esta decisión.'
@@ -1165,9 +1221,9 @@ function scheduleNotification(
 
   const randomMessage =
     motivational[
-      Math.floor(
-        Math.random() * motivational.length
-      )
+    Math.floor(
+      Math.random() * motivational.length
+    )
     ];
 
   setTimeout(() => {
@@ -1180,15 +1236,15 @@ function scheduleNotification(
 
           body: randomMessage,
 
-          icon:'icon.png',
+          icon: 'icon.png',
 
-          badge:'icon.png',
+          badge: 'icon.png',
 
-          vibrate:[200,100,200],
+          vibrate: [200, 100, 200],
 
-          tag:'octo-task',
+          tag: 'octo-task',
 
-          requireInteraction:true
+          requireInteraction: true
 
         }
       );

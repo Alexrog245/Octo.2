@@ -1,35 +1,35 @@
 self.addEventListener('install', () => {
-  self.skipWaiting();
+    self.skipWaiting();
 });
 
 self.addEventListener('notificationclick', event => {
 
-  event.notification.close();
+    event.notification.close();
 
-  event.waitUntil(
+    event.waitUntil(
 
-    clients.matchAll({
-      type: 'window'
-    }).then(clientList => {
+        clients.matchAll({
+            type: 'window'
+        }).then(clientList => {
 
-      for(const client of clientList){
+            for (const client of clientList) {
 
-        if(client.url && 'focus' in client){
+                if (client.url && 'focus' in client) {
 
-          return client.focus();
+                    return client.focus();
 
-        }
+                }
 
-      }
+            }
 
-      if(clients.openWindow){
+            if (clients.openWindow) {
 
-        return clients.openWindow('./');
+                return clients.openWindow('./');
 
-      }
+            }
 
-    })
+        })
 
-  );
+    );
 
 });

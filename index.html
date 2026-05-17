@@ -5,19 +5,13 @@
 
   <meta charset="UTF-8" />
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Octo </title>
 
   <link rel="stylesheet" href="style.css" />
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <link rel="manifest" href="manifest.json">
 
@@ -66,7 +60,7 @@
             <h1>Octo</h1>
 
             <p class="subtitle">
-              Focus-Plan-Conquer
+              Focus-PlanConquer
             </p>
 
           </div>
@@ -85,20 +79,9 @@
 
         <svg width="140" height="140">
 
-          <circle
-            class="bg-circle"
-            cx="70"
-            cy="70"
-            r="54"
-          />
+          <circle class="bg-circle" cx="70" cy="70" r="54" />
 
-          <circle
-            class="progress-circle"
-            id="progressCircle"
-            cx="70"
-            cy="70"
-            r="54"
-          />
+          <circle class="progress-circle" id="progressCircle" cx="70" cy="70" r="54" />
 
         </svg>
 
@@ -112,30 +95,57 @@
 
     <!-- QUOTE -->
 
+    <!-- STATS -->
+
+    <section class="stats-grid">
+
+      <div class="stat-card glass">
+
+        <h3 id="completedCount">
+          0
+        </h3>
+
+        <p>Completadas</p>
+
+      </div>
+
+      <div class="stat-card glass">
+
+        <h3 id="pendingCount">
+          0
+        </h3>
+
+        <p>Pendientes</p>
+
+      </div>
+
+      <div class="stat-card glass">
+
+        <h3 id="disciplineCount">
+          0%
+        </h3>
+
+        <p>Disciplina</p>
+
+      </div>
+
+      <div class="stat-card glass">
+
+        <h3 id="totalCount">
+          0
+        </h3>
+
+        <p>Total</p>
+
+      </div>
+
+    </section>
+
     <section class="quote glass">
+
       <section class="stats glass">
 
-  <div class="stat-box">
 
-    <h3 id="completedCount">
-      0
-    </h3>
-
-    <p>
-      Completadas
-    </p>
-
-  </div>
-
-  <div class="stat-box">
-
-    <h3 id="pendingCount">
-      0
-    </h3>
-
-    <p>
-      Pendientes
-    </p>
 
   </div>
 
@@ -151,27 +161,29 @@
 
   </div>
 
-</section>
+  </section>
 
-      <p id="quoteText">
-        La disciplina construye imperios.
-      </p>
+  <p id="quoteText">
+    La disciplina construye imperios.
+  </p>
 
-    </section>
+  </section>
 
-    <!-- TASKS -->
+  <!-- TASKS -->
 
-    <section class="tasks">
+  <section class="tasks">
 
-      <div class="task-header">
+    <div class="task-header">
 
-        <h2>Mis Tareas</h2>
+      <h2>Mis Tareas</h2>
 
-      </div>
+    </div>
 
-      <div class="task-grid" id="taskGrid"></div>
+    <div class="task-grid" id="taskGrid"></div>
 
-    </section>
+  </section>
+
+
 
   </div>
 
@@ -187,98 +199,82 @@
 
   <div class="modal hidden" id="modal">
 
-<div class="modal-box glass">
+    <div class="modal-box glass">
 
-  <button class="close-modal" id="closeModalBtn">
-    ❌
-  </button>
+      <button class="close-modal" id="closeModalBtn">
+        ❌
+      </button>
 
       <h2>Nueva tarea</h2>
 
-      <input
-        type="text"
-        id="taskTitle"
-        placeholder="Título"
-      >
+      <input type="text" id="taskTitle" placeholder="Título">
 
-      <input
-        type="text"
-        id="taskCategory"
-        placeholder="Categoría"
-      >
+      <input type="text" id="taskCategory" placeholder="Categoría">
 
-<input
-  type="text"
-  id="taskIcon"
-  placeholder="Emoji (ej: 💪 🐶 📚 ⛽)"
-  maxlength="2"
->
+      <input type="text" id="taskIcon" placeholder="Emoji (ej: 💪 🐶 📚 ⛽)" maxlength="2">
       <!-- TASK PRESETS -->
 
-<div class="preset-title">
-  Tareas rápidas
-</div>
+      <div class="preset-title">
+        Tareas rápidas
+      </div>
 
-<div class="task-presets">
+      <div class="task-presets">
 
-  <button type="button" class="preset-btn">
-    💪 Entrenar
-  </button>
+        <button type="button" class="preset-btn">
+          💪 Entrenar
+        </button>
 
-  <button type="button" class="preset-btn">
-    📚 Estudiar
-  </button>
+        <button type="button" class="preset-btn">
+          📚 Estudiar
+        </button>
 
-  <button type="button" class="preset-btn">
-    🐶 Pasear perro
-  </button>
+        <button type="button" class="preset-btn">
+          🐶 Pasear perro
+        </button>
 
-  <button type="button" class="preset-btn">
-    ⛽ Gasolina
-  </button>
+        <button type="button" class="preset-btn">
+          ⛽ Gasolina
+        </button>
 
-  <button type="button" class="preset-btn">
-    🍽️ Dar comida
-  </button>
+        <button type="button" class="preset-btn">
+          🍽️ Dar comida
+        </button>
 
-  <button type="button" class="preset-btn">
-    💧 Tomar agua
-  </button>
+        <button type="button" class="preset-btn">
+          💧 Tomar agua
+        </button>
 
-  <button type="button" class="preset-btn">
-    📞 Llamada
-  </button>
+        <button type="button" class="preset-btn">
+          📞 Llamada
+        </button>
 
- <button type="button" class="preset-btn">
-    🛒 Compras
-  </button>
+        <button type="button" class="preset-btn">
+          🛒 Compras
+        </button>
 
-</div>
+      </div>
 
-<!-- HOUR -->
+      <!-- HOUR -->
 
-<input
-  type="time"
-  id="taskHour"
->
+      <input type="time" id="taskHour">
 
-<!-- REMINDER -->
+      <!-- REMINDER -->
 
-<select id="reminderType">
+      <select id="reminderType">
 
-  <option value="30">
-    Recordar 30 min antes
-  </option>
+        <option value="30">
+          Recordar 30 min antes
+        </option>
 
-  <option value="60">
-    Recordar 1 hora antes
-  </option>
+        <option value="60">
+          Recordar 1 hora antes
+        </option>
 
-  <option value="0">
-    Exactamente a la hora
-  </option>
+        <option value="0">
+          Exactamente a la hora
+        </option>
 
-</select>
+      </select>
 
       <button id="saveTaskBtn">
 
