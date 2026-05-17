@@ -1069,3 +1069,72 @@ select{
   }
 
 }
+
+/* =========================================
+   CINEMATIC LOADER
+========================================= */
+
+.loader-title{
+
+  letter-spacing:8px;
+
+  text-shadow:
+    0 0 20px rgba(255,215,0,0.6);
+
+}
+
+.loader-subtitle{
+
+  margin-top:10px;
+
+  opacity:0.75;
+
+  letter-spacing:4px;
+
+  font-size:14px;
+
+}
+
+.system-text{
+
+  margin-top:30px;
+
+  color:#00ffff;
+
+  font-size:14px;
+
+  letter-spacing:3px;
+
+  opacity:0.85;
+
+  animation:pulseSystem 1.5s infinite;
+
+}
+
+@keyframes pulseSystem{
+
+  0%{
+    opacity:0.3;
+  }
+
+  50%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0.3;
+  }
+
+}
+
+.quote-author{
+
+  color:#ffd700;
+
+  font-size:14px;
+
+  opacity:0.8;
+
+  letter-spacing:2px;
+
+}

@@ -99,91 +99,56 @@ for(let i = 0; i < 40; i++){
 
 const quotes = [
 
-  /* OCTO */
+{
+  text:'La disciplina tarde o temprano derrota al talento.',
+  author:'Ayanokoji'
+},
 
-  'La disciplina construye versiones que el miedo jamás conocerá.',
+{
+  text:'Los débiles dependen de motivación. Los fuertes dependen de sistemas.',
+  author:'Octo'
+},
 
-  'El enfoque elimina el caos.',
+{
+  text:'El hombre conquista el mundo conquistándose a sí mismo.',
+  author:'Zen'
+},
 
-  'Tu futuro está observando tus hábitos.',
+{
+  text:'El tiempo igual pasará. Decide en quién te convertirás mientras pasa.',
+  author:'Octo'
+},
 
-  'La constancia silenciosa siempre supera al talento desordenado.',
+{
+  text:'La ventaja se construye cuando nadie está mirando.',
+  author:'Ayanokoji'
+},
 
-  'Las pequeñas victorias también construyen imperios.',
+{
+  text:'La constancia convierte lo imposible en inevitable.',
+  author:'Octo'
+},
 
-  'La evolución personal ocurre en silencio.',
+{
+  text:'No necesitas sentir ganas. Necesitas actuar.',
+  author:'Kratos'
+},
 
-  'Primero controlas tus hábitos. Luego ellos construyen tu destino.',
+{
+  text:'Cada día que ignoras tu potencial alguien menos talentoso te supera.',
+  author:'Octo'
+},
 
-  'La acción destruye la ansiedad.',
+{
+  text:'Las personas cambian cuando entienden lo que pierden.',
+  author:'Ayanokoji'
+},
 
-  'La disciplina pesa gramos. El arrepentimiento toneladas.',
-
-  'Nadie ve las batallas mentales que ganas cada día.',
-
-  /* AYANOKOJI STYLE */
-
-  'Las emociones interfieren con las decisiones eficientes.',
-
-  'La igualdad es una ilusión creada para tranquilizar débiles.',
-
-  'La gente revela quién es cuando obtiene poder.',
-
-  'El control emocional siempre será una ventaja.',
-
-  'Quien domina su mente controla el juego.',
-
-  'El silencio también puede ser una estrategia.',
-
-  'La debilidad emocional destruye el potencial.',
-
-  'La verdadera superioridad es el autocontrol.',
-
-  'La lógica fría evita errores innecesarios.',
-
-  'No necesitas reconocimiento para evolucionar.',
-
-  /* FILOSOFÍA */
-
-  'El tiempo seguirá avanzando contigo o sin ti.',
-
-  'Tus hábitos actuales están creando tu futuro.',
-
-  'El miedo desaparece después de actuar.',
-
-  'La comodidad destruye más sueños que el fracaso.',
-
-  'La mente puede ser prisión o arma.',
-
-  'El caos interno también se entrena.',
-
-  'Cada día ignorado también tiene consecuencias.',
-
-  /* GAMER */
-
-  'La vida también tiene ranked.',
-
-  'AFK demasiado tiempo.',
-
-  'No subes de nivel evitando misiones.',
-
-  'Cada tarea completada es experiencia acumulada.',
-
-  'Modo competitivo activado.',
-
-  /* ANIME */
-
-  'Incluso alguien débil puede cambiar su destino.',
-
-  'La disciplina también es una forma de poder.',
-
-  'Las personas cambian cuando deciden avanzar.',
-
-  'Sigue avanzando.',
-
-  'El verdadero enemigo suele ser uno mismo.'
-
-];
+{
+  text:'Tu futuro está creado por lo que haces hoy.',
+  author:'Anime Philosophy'
+},
+];  
 
 /* =========================================
    LOAD RANDOM QUOTE
@@ -194,7 +159,13 @@ function randomQuote(){
   const random =
     quotes[Math.floor(Math.random() * quotes.length)];
 
-  quoteText.textContent = random;
+  quoteText.innerHTML = `
+  "${random.text}"
+  <br><br>
+  <span class="quote-author">
+    — ${random.author}
+  </span>
+`;
 
 }
 
@@ -346,6 +317,7 @@ function renderTasks(){
         tasks.filter(t => t.id !== task.id);
 
       saveTasks();
+      scheduleNotification(tasks[tasks.length - 1]);
 
       renderTasks();
 
@@ -594,6 +566,50 @@ presetButtons.forEach(button => {
 /* =========================================
    SAVE NEW TASK
 ========================================= */
+const notificationMessages = {
+
+  '💪':[
+
+    'Tu cuerpo refleja tus hábitos.',
+    'Cada repetición construye disciplina.',
+    'La fuerza mental también se entrena.'
+
+  ],
+
+  '📚':[
+
+    'La ventaja intelectual se construye en silencio.',
+    'Estudiar hoy es dominar mañana.',
+    'Cada página leída te separa del promedio.'
+
+  ],
+
+  '🧠':[
+
+    'La disciplina siempre supera a la motivación.',
+    'Pensar diferente requiere actuar diferente.',
+    'La mente se entrena igual que el cuerpo.'
+
+  ],
+
+  '👑':[
+
+    'Los líderes actúan incluso cuando no quieren.',
+    'El respeto se gana con acciones.',
+    'Tu disciplina habla antes que tú.'
+
+  ],
+
+  '🚀':[
+
+    'Tu futuro depende de lo que hagas hoy.',
+    'Las metas sin acción son ilusiones.',
+    'La ambición requiere sacrificio.'
+
+  ]
+
+};
+
 
 saveTaskBtn.addEventListener('click', () => {
 
@@ -971,5 +987,78 @@ if('serviceWorker' in navigator){
       });
 
   });
+
+}
+
+/* =========================================
+   SMART NOTIFICATIONS
+========================================= */
+
+function scheduleNotification(task){
+
+  if(!('Notification' in window)) return;
+
+  if(Notification.permission !== 'granted') return;
+
+  if(!task.hour) return;
+
+  const [hour, minute] =
+    task.hour.split(':');
+
+  const now = new Date();
+
+  const notificationTime =
+    new Date();
+
+  notificationTime.setHours(hour);
+  notificationTime.setMinutes(minute);
+
+  notificationTime.setSeconds(0);
+
+  const reminderMinutes =
+    parseInt(task.reminderType);
+
+  notificationTime.setMinutes(
+    notificationTime.getMinutes() - reminderMinutes
+  );
+
+  const timeout =
+    notificationTime.getTime() - now.getTime();
+
+  if(timeout <= 0) return;
+
+  setTimeout(() => {
+
+    const categoryMessages =
+      notificationMessages[task.icon] || [
+
+        'Tu disciplina define tu destino.'
+      ];
+
+    const randomMessage =
+      categoryMessages[
+        Math.floor(
+          Math.random() * categoryMessages.length
+        )
+      ];
+
+    new Notification(
+      `⏰ ${task.title}`,
+      {
+        body:randomMessage,
+        icon:'icon.png'
+      }
+    );
+
+  }, timeout);
+
+}
+/* =========================================
+   NOTIFICATION PERMISSION
+========================================= */
+
+if('Notification' in window){
+
+  Notification.requestPermission();
 
 }
