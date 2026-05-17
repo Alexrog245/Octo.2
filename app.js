@@ -99,21 +99,99 @@ for(let i = 0; i < 40; i++){
 
 const quotes = [
 
-  'La disciplina construye imperios.',
+  /* DISCIPLINA */
 
-  'Tu futuro depende de lo que haces hoy.',
+  'La disciplina tarde o temprano vence al talento.',
 
-  'La constancia transforma vidas.',
+  'Tu futuro está observando lo que haces hoy.',
 
-  'Las metas sin acción son solo deseos.',
+  'La constancia crea monstruos imparables.',
 
-  'Conviértete en alguien imparable.',
+  'Nadie viene a salvarte. Construye tu sistema.',
 
-  'Tu mejor versión requiere sacrificio.',
+  'Los días difíciles crean personas peligrosas.',
 
-  'Sin sistema no existe evolución.',
+  'La comodidad destruye más sueños que el fracaso.',
 
-  'El progreso pequeño sigue siendo progreso.'
+  'El dolor de hoy evita el arrepentimiento de mañana.',
+
+  'La disciplina pesa gramos. El arrepentimiento toneladas.',
+
+  /* AYANOKOJI */
+
+  'Todas las personas son herramientas. Depende de cómo las uses.',
+
+  'La igualdad no existe desde el momento en que nacemos.',
+
+  'La victoria lo es todo. Mientras gane, eso basta.',
+
+  'Las emociones nublan las decisiones importantes.',
+
+  'El verdadero fracaso es dejar de avanzar.',
+
+  'Quien controla su mente controla su destino.',
+
+  /* GAMER */
+
+  'Los verdaderos jugadores no se rinden en ranked.',
+
+  'AFK en la vida también baja el rango.',
+
+  'Cada tarea completada es experiencia acumulada.',
+
+  'Modo competitivo activado.',
+
+  'Tu versión legendaria necesita disciplina diaria.',
+
+  'No farmees excusas. Farmea resultados.',
+
+  /* STREAMERS / INTERNET */
+
+  'El algoritmo recompensa la constancia.',
+
+  'Hazlo aunque no tengas ganas.',
+
+  'Nadie ve las horas silenciosas del progreso.',
+
+  'La motivación dura poco. Los hábitos no.',
+
+  'La gente exitosa también se cansa.',
+
+  /* ANIME */
+
+  'Sigue avanzando.',
+
+  'Un paso más también sigue siendo progreso.',
+
+  'El talento sin disciplina no significa nada.',
+
+  'Incluso los débiles pueden volverse monstruos.',
+
+  'El límite normalmente está en tu mente.',
+
+  /* PELÍCULAS */
+
+  '¿Por qué caemos? Para aprender a levantarnos.',
+
+  'El miedo mata más sueños que el fracaso.',
+
+  'Las grandes cosas empiezan pequeñas.',
+
+  'La excelencia no es un acto. Es un hábito.',
+
+  /* FILOSÓFICAS */
+
+  'Quien domina su mente domina su realidad.',
+
+  'El caos también puede ser una oportunidad.',
+
+  'El tiempo igual pasará. Úsalo bien.',
+
+  'La acción elimina la ansiedad.',
+
+  'Tu vida cambia cuando cambian tus hábitos.',
+
+  'Primero construyes hábitos. Luego ellos te construyen.'
 
 ];
 
@@ -131,6 +209,11 @@ function randomQuote(){
 }
 
 randomQuote();
+setInterval(() => {
+
+  randomQuote();
+
+}, 15000);
 
 /* =========================================
    CLOCK
@@ -586,6 +669,108 @@ function checkLegendary(){
 /* =========================================
    LOADER
 ========================================= */
+/* =========================================
+   NOTIFICATION SYSTEM
+========================================= */
+
+if('Notification' in window){
+
+  Notification.requestPermission();
+
+}
+
+const motivationalNotifications = {
+
+  '💪':[
+
+    'Tu entrenamiento te está esperando. La disciplina no descansa.',
+
+    'Los cuerpos fuertes se construyen en días donde no tienes ganas.',
+
+    'No entrenar hoy también es una decisión.'
+
+  ],
+
+  '📚':[
+
+    'Tu futuro depende de lo que estudies hoy.',
+
+    'Cada minuto estudiando te aleja de la mediocridad.',
+
+    'Ayanokoji no dejaría esta tarea pendiente.'
+
+  ],
+
+  '💧':[
+
+    'Tu cuerpo también necesita mantenimiento.',
+
+    'Hasta las máquinas más poderosas necesitan energía.',
+
+    'Pequeños hábitos crean grandes resultados.'
+
+  ],
+
+  '🧠':[
+
+    'Controla tu mente o ella te controlará a ti.',
+
+    'La disciplina mental cambia destinos.',
+
+    'Piensa menos. Ejecuta más.'
+
+  ],
+
+  '🎮':[
+
+    'AFK demasiado tiempo.',
+
+    'Modo competitivo activado.',
+
+    'No pierdas experiencia hoy.'
+
+  ],
+
+  'default':[
+
+    'La disciplina construye versiones legendarias.',
+
+    'Tu mejor versión necesita constancia.',
+
+    'El progreso también ocurre en silencio.'
+
+  ]
+
+};
+
+function sendTaskReminder(task){
+
+  if(Notification.permission !== 'granted')
+    return;
+
+  const messages =
+    motivationalNotifications[task.icon]
+    ||
+    motivationalNotifications['default'];
+
+  const randomMessage =
+    messages[
+      Math.floor(Math.random() * messages.length)
+    ];
+
+  new Notification(
+
+    `⏰ ${task.title}`,
+
+    {
+      body: randomMessage,
+      icon:'icon.png'
+    }
+
+  );
+
+}
+
 
 window.addEventListener('load', () => {
 
