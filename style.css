@@ -752,7 +752,7 @@ svg{
   background:
     linear-gradient(135deg,#ffd700,#a855f7);
 
-  -webkit-background-clip:text;
+    -webkit-background-clip:text;
 
   -webkit-text-fill-color:transparent;
 

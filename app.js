@@ -71,6 +71,28 @@ const legendarySound =
 const particles =
   document.getElementById('particles');
 
+  /* =========================================
+   NOTIFICATIONS
+========================================= */
+
+if('serviceWorker' in navigator){
+
+  navigator.serviceWorker
+    .register('sw.js')
+    .then(() => {
+
+      console.log('Service Worker activo');
+
+    });
+
+}
+
+if(Notification.permission !== 'granted'){
+
+  Notification.requestPermission();
+
+}
+
 /* =========================================
    PARTICLES
 ========================================= */
@@ -667,6 +689,14 @@ scheduleNotification({
   renderTasks();
 
   updateProgress();
+  
+  scheduleNotification(
+  title,
+  category,
+  icon,
+  taskHourInput.value,
+  reminderTypeInput.value
+);
 
   modal.classList.add('hidden');
 
@@ -1060,5 +1090,111 @@ function scheduleNotification(task){
 if('Notification' in window){
 
   Notification.requestPermission();
+
+}
+/* =========================================
+   REAL NOTIFICATIONS
+========================================= */
+
+function scheduleNotification(
+  title,
+  category,
+  icon,
+  hour,
+  reminder
+){
+
+  if(!hour) return;
+
+  const now = new Date();
+
+  const taskTime = new Date();
+
+  const [hours, minutes] =
+    hour.split(':');
+
+  taskTime.setHours(hours);
+  taskTime.setMinutes(minutes);
+  taskTime.setSeconds(0);
+
+  taskTime.setMinutes(
+    taskTime.getMinutes() - Number(reminder)
+  );
+
+  const delay =
+    taskTime.getTime() - now.getTime();
+
+  if(delay <= 0) return;
+
+  const messages = {
+
+    '💪':[
+      'Tu disciplina física construye tu mente.',
+      'Cada entrenamiento te acerca a tu mejor versión.',
+      'La incomodidad de hoy será poder mañana.'
+    ],
+
+    '📚':[
+      'El conocimiento te da ventaja sobre los demás.',
+      'Estudiar hoy evita arrepentimientos mañana.',
+      'Tu futuro depende de lo que aprendas ahora.'
+    ],
+
+    '🧠':[
+      'Tu mente necesita entrenamiento diario.',
+      'Pensar diferente cambia tu destino.',
+      'El enfoque separa a los grandes del resto.'
+    ],
+
+    '🛒':[
+      'Resolver lo pequeño mantiene el control total.',
+      'La organización evita el caos.',
+      'Cada tarea completada fortalece tu sistema.'
+    ],
+
+    '✨':[
+      'No ignores lo que prometiste hacer.',
+      'La disciplina supera la motivación.',
+      'Tu versión futura depende de esta decisión.'
+    ]
+
+  };
+
+  const motivational =
+    messages[icon] || messages['✨'];
+
+  const randomMessage =
+    motivational[
+      Math.floor(
+        Math.random() * motivational.length
+      )
+    ];
+
+  setTimeout(() => {
+
+    navigator.serviceWorker.ready.then(reg => {
+
+      reg.showNotification(
+        `${icon} ${title}`,
+        {
+
+          body: randomMessage,
+
+          icon:'icon.png',
+
+          badge:'icon.png',
+
+          vibrate:[200,100,200],
+
+          tag:'octo-task',
+
+          requireInteraction:true
+
+        }
+      );
+
+    });
+
+  }, delay);
 
 }
