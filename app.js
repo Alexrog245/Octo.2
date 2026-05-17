@@ -99,99 +99,89 @@ for(let i = 0; i < 40; i++){
 
 const quotes = [
 
-  /* DISCIPLINA */
+  /* OCTO */
 
-  'La disciplina tarde o temprano vence al talento.',
+  'La disciplina construye versiones que el miedo jamás conocerá.',
 
-  'Tu futuro está observando lo que haces hoy.',
+  'El enfoque elimina el caos.',
 
-  'La constancia crea monstruos imparables.',
+  'Tu futuro está observando tus hábitos.',
 
-  'Nadie viene a salvarte. Construye tu sistema.',
+  'La constancia silenciosa siempre supera al talento desordenado.',
 
-  'Los días difíciles crean personas peligrosas.',
+  'Las pequeñas victorias también construyen imperios.',
 
-  'La comodidad destruye más sueños que el fracaso.',
+  'La evolución personal ocurre en silencio.',
 
-  'El dolor de hoy evita el arrepentimiento de mañana.',
+  'Primero controlas tus hábitos. Luego ellos construyen tu destino.',
+
+  'La acción destruye la ansiedad.',
 
   'La disciplina pesa gramos. El arrepentimiento toneladas.',
 
-  /* AYANOKOJI */
+  'Nadie ve las batallas mentales que ganas cada día.',
 
-  'Todas las personas son herramientas. Depende de cómo las uses.',
+  /* AYANOKOJI STYLE */
 
-  'La igualdad no existe desde el momento en que nacemos.',
+  'Las emociones interfieren con las decisiones eficientes.',
 
-  'La victoria lo es todo. Mientras gane, eso basta.',
+  'La igualdad es una ilusión creada para tranquilizar débiles.',
 
-  'Las emociones nublan las decisiones importantes.',
+  'La gente revela quién es cuando obtiene poder.',
 
-  'El verdadero fracaso es dejar de avanzar.',
+  'El control emocional siempre será una ventaja.',
 
-  'Quien controla su mente controla su destino.',
+  'Quien domina su mente controla el juego.',
+
+  'El silencio también puede ser una estrategia.',
+
+  'La debilidad emocional destruye el potencial.',
+
+  'La verdadera superioridad es el autocontrol.',
+
+  'La lógica fría evita errores innecesarios.',
+
+  'No necesitas reconocimiento para evolucionar.',
+
+  /* FILOSOFÍA */
+
+  'El tiempo seguirá avanzando contigo o sin ti.',
+
+  'Tus hábitos actuales están creando tu futuro.',
+
+  'El miedo desaparece después de actuar.',
+
+  'La comodidad destruye más sueños que el fracaso.',
+
+  'La mente puede ser prisión o arma.',
+
+  'El caos interno también se entrena.',
+
+  'Cada día ignorado también tiene consecuencias.',
 
   /* GAMER */
 
-  'Los verdaderos jugadores no se rinden en ranked.',
+  'La vida también tiene ranked.',
 
-  'AFK en la vida también baja el rango.',
+  'AFK demasiado tiempo.',
+
+  'No subes de nivel evitando misiones.',
 
   'Cada tarea completada es experiencia acumulada.',
 
   'Modo competitivo activado.',
 
-  'Tu versión legendaria necesita disciplina diaria.',
-
-  'No farmees excusas. Farmea resultados.',
-
-  /* STREAMERS / INTERNET */
-
-  'El algoritmo recompensa la constancia.',
-
-  'Hazlo aunque no tengas ganas.',
-
-  'Nadie ve las horas silenciosas del progreso.',
-
-  'La motivación dura poco. Los hábitos no.',
-
-  'La gente exitosa también se cansa.',
-
   /* ANIME */
+
+  'Incluso alguien débil puede cambiar su destino.',
+
+  'La disciplina también es una forma de poder.',
+
+  'Las personas cambian cuando deciden avanzar.',
 
   'Sigue avanzando.',
 
-  'Un paso más también sigue siendo progreso.',
-
-  'El talento sin disciplina no significa nada.',
-
-  'Incluso los débiles pueden volverse monstruos.',
-
-  'El límite normalmente está en tu mente.',
-
-  /* PELÍCULAS */
-
-  '¿Por qué caemos? Para aprender a levantarnos.',
-
-  'El miedo mata más sueños que el fracaso.',
-
-  'Las grandes cosas empiezan pequeñas.',
-
-  'La excelencia no es un acto. Es un hábito.',
-
-  /* FILOSÓFICAS */
-
-  'Quien domina su mente domina su realidad.',
-
-  'El caos también puede ser una oportunidad.',
-
-  'El tiempo igual pasará. Úsalo bien.',
-
-  'La acción elimina la ansiedad.',
-
-  'Tu vida cambia cuando cambian tus hábitos.',
-
-  'Primero construyes hábitos. Luego ellos te construyen.'
+  'El verdadero enemigo suele ser uno mismo.'
 
 ];
 
@@ -359,7 +349,11 @@ function renderTasks(){
 
       renderTasks();
 
+      checkMindState();
+
       updateProgress();
+
+      updateStats();
 
     });
 
@@ -398,6 +392,56 @@ function renderTasks(){
 renderTasks();
 
 /* =========================================
+   PSYCHOLOGICAL SYSTEM
+========================================= */
+
+function checkMindState(){
+
+  const completed =
+    tasks.filter(
+      task => task.completed
+    ).length;
+
+  const pending =
+    tasks.filter(
+      task => !task.completed
+    ).length;
+
+  /* MUCHAS COMPLETADAS */
+
+  if(completed >= 5){
+
+    quoteText.textContent =
+
+      'La disciplina ya está formando parte de tu identidad.';
+
+  }
+
+  /* MUCHAS PENDIENTES */
+
+  if(pending >= 5){
+
+    quoteText.textContent =
+
+      'Tus hábitos actuales están construyendo tu futuro.';
+
+  }
+
+  /* TODO COMPLETADO */
+
+  if(
+    tasks.length > 0 &&
+    tasks.every(task => task.completed)
+  ){
+
+    quoteText.textContent =
+
+      'El autocontrol siempre será una ventaja.';
+  }
+
+}
+
+/* =========================================
    PROGRESS
 ========================================= */
 
@@ -426,6 +470,43 @@ function updateProgress(){
 }
 
 updateProgress();
+
+/* =========================================
+   STATS SYSTEM
+========================================= */
+
+function updateStats(){
+
+  const completed =
+    tasks.filter(
+      task => task.completed
+    ).length;
+
+  const pending =
+    tasks.filter(
+      task => !task.completed
+    ).length;
+
+  const percent =
+    tasks.length === 0
+    ? 0
+    : Math.round(
+      (completed / tasks.length) * 100
+    );
+
+  document.getElementById(
+    'completedCount'
+  ).textContent = completed;
+
+  document.getElementById(
+    'pendingCount'
+  ).textContent = pending;
+
+  document.getElementById(
+    'disciplinePercent'
+  ).textContent = `${percent}%`;
+
+}
 
 /* =========================================
    OPEN MODAL

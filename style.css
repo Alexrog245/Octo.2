@@ -1007,3 +1007,65 @@ select{
   }
 
 }
+
+/* =========================================
+   STATS
+========================================= */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:16px;
+
+  margin-bottom:26px;
+
+  padding:20px;
+
+  border-radius:28px;
+
+}
+
+.stat-box{
+
+  text-align:center;
+
+  padding:18px;
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+}
+
+.stat-box h3{
+
+  font-size:30px;
+
+  color:#ffd700;
+
+  margin-bottom:8px;
+
+}
+
+.stat-box p{
+
+  opacity:0.7;
+
+  font-size:14px;
+
+}
+
+@media(max-width:768px){
+
+  .stats{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
