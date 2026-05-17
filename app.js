@@ -1,3 +1,4 @@
+
 const taskGrid = document.getElementById('taskGrid');
 
 const progressCircle =
