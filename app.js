@@ -552,6 +552,19 @@ tasks.push({
 
 });
 
+scheduleNotification({
+
+  title,
+
+  icon,
+
+  hour:taskHourInput.value,
+
+  reminderType:
+    reminderTypeInput.value
+
+});
+
   saveTasks();
 
   renderTasks();
@@ -567,6 +580,49 @@ tasks.push({
   taskIconInput.value = '';
 
 });
+
+/* =========================================
+   SCHEDULE NOTIFICATIONS
+========================================= */
+
+function scheduleNotification(task){
+
+  if(!task.hour) return;
+
+  const now = new Date();
+
+  const taskTime =
+    new Date();
+
+  const [hours, minutes] =
+    task.hour.split(':');
+
+  taskTime.setHours(hours);
+
+  taskTime.setMinutes(minutes);
+
+  taskTime.setSeconds(0);
+
+  const reminderOffset =
+    parseInt(task.reminderType) * 60000;
+
+  const notificationTime =
+    taskTime.getTime() - reminderOffset;
+
+  const delay =
+    notificationTime - now.getTime();
+
+  if(delay > 0){
+
+    setTimeout(() => {
+
+      sendTaskReminder(task);
+
+    }, delay);
+
+  }
+
+}
 
 /* =========================================
    CELEBRATION
@@ -755,19 +811,42 @@ function sendTaskReminder(task){
 
   const randomMessage =
     messages[
-      Math.floor(Math.random() * messages.length)
+      Math.floor(
+        Math.random() * messages.length
+      )
     ];
 
-  new Notification(
+  navigator.serviceWorker.ready.then(registration => {
 
-    `⏰ ${task.title}`,
+    registration.showNotification(
 
-    {
-      body: randomMessage,
-      icon:'icon.png'
-    }
+      `⏰ ${task.title}`,
 
-  );
+      {
+
+        body: randomMessage,
+
+        icon:'icon.png',
+
+        badge:'icon.png',
+
+        vibrate:[
+
+          200,
+          100,
+          200
+
+        ],
+
+        tag:'octo-task',
+
+        renotify:true
+
+      }
+
+    );
+
+  });
 
 }
 
@@ -790,3 +869,26 @@ window.addEventListener('load', () => {
   }, 2200);
 
 });
+
+/* =========================================
+   SERVICE WORKER
+========================================= */
+
+if('serviceWorker' in navigator){
+
+  window.addEventListener('load', () => {
+
+    navigator.serviceWorker
+      .register('./sw.js')
+
+      .then(() => {
+
+        console.log(
+          'Service Worker registrado'
+        );
+
+      });
+
+  });
+
+}
