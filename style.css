@@ -706,6 +706,7 @@ svg { transform: rotate(-90deg); }
 .theme-toggle:hover {
   transform: none;
 }
+
   @keyframes modalUp {
     from { transform: translateY(100%); opacity: 0; }
     to   { transform: translateY(0);    opacity: 1; }
